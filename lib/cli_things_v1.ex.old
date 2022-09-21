@@ -1,0 +1,101 @@
+"""
+defmodule CliThings_v1 do
+  alias ExTermbox.Bindings, as: Termbox
+  alias ExTermbox.{Cell, EventManager, Event, Position}
+
+  @rev 1
+  @fast_mode true
+
+  def hello do
+    :ok = Termbox.init()
+    # ? {:ok, _} = Termbox.select_input_mode(Constants.input_mode(:esc_with_mouse))
+    {:ok, _pid} = EventManager.start_link()
+    :ok = EventManager.subscribe(self())
+
+    Process.sleep(1000)
+    render_header()
+    Termbox.present()
+    loop()
+  end
+
+  def loop do
+    receive do
+      {:event, %Event{ch: ?q}} ->
+        :ok = EventManager.stop()
+        :ok = Termbox.shutdown()
+
+      {:event, %Event{} = event} ->
+        Termbox.clear()
+        render_header()
+        render_event(event)
+        Termbox.present()
+        loop()
+    end
+  end
+
+  def render_header do
+    render_lines(
+      [
+        'cli o/!',
+        'rev-#{@rev}',
+        '(<q> to quit)'
+      ],
+      1,
+      4
+    )
+  end
+
+  def render_event(
+        %Event{
+          type: type,
+          mod: mod,
+          key: key,
+          ch: ch,
+          w: w,
+          h: h,
+          x: x,
+          y: y
+        } = data
+      ) do
+    slowly_render_lines(
+      [
+        'Event detected!',
+        'Got: #{inspect(data)}. '
+      ],
+      6,
+      6
+    )
+  end
+
+  defp slowly_render_lines(lines, y, x) do
+    for {line, line_index} <- Enum.with_index(lines) do
+      for {ch, ch_index} <- Enum.with_index(line) do
+        render_character(ch, y + line_index, x + ch_index)
+
+        # Not nice. Blocks the rendering. How can I queue a bunch of
+        # characters to be rendered?
+        # ... elixir question => How to maintain queue state? -> With a process, responsible
+        #                                                         for tracking application state?
+        Process.sleep(5)
+        Termbox.present()
+      end
+    end
+  end
+
+  defp render_lines(lines, y, x) do
+    for {line, line_index} <- Enum.with_index(lines) do
+      render_line(line, y + line_index, x)
+    end
+  end
+
+  defp render_line(text, y, x) do
+    for {ch, ch_index} <- Enum.with_index(text) do
+      render_character(ch, y, x + ch_index)
+    end
+  end
+
+  defp render_character(ch, y, x) do
+    :ok = Termbox.put_cell(%Cell{position: %Position{x: x, y: y}, ch: ch})
+  end
+end
+"""
