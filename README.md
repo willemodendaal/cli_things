@@ -10,20 +10,6 @@ Machines sometimes break, but I try to craft them well. The elixir ecosystem sho
 
 And a constraint - To help my creativity: No unit tests. These are true "contraptions". If you need tests to understand them, then you need to restructure them.
 
-## Installation
+## Running
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `cli_things` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:cli_things, "~> 0.1.0"}
-  ]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/cli_things>.
-
+This will be packaged using EScript, eventually, but for now, run with: `mix run -e "CliThings.hello"`
