@@ -3,7 +3,7 @@ defmodule CliThings.Programs.Stars.StarRenderer do
 
   import CliThings.Terminal.Layer01.Blip
 
-  def loop_to_render_stars() do
+  def start_rendering_stars() do
     GenServer.start_link(__MODULE__, [], name: __MODULE__)
     GenServer.cast(__MODULE__, :render_a_star)
   end

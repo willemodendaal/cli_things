@@ -46,6 +46,7 @@ defmodule CliThings.Programs.Root do
     output(
       first_messages ++
         [
+          '<c> to capture',
           '<s> to see stars',
           '<q> to quit',
           '',

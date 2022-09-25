@@ -23,7 +23,7 @@ defmodule CliThings.Programs.Stars do
       2
     )
 
-    StarRenderer.loop_to_render_stars()
+    StarRenderer.start_rendering_stars()
 
     Terminal.loop(&on_event/1)
   end

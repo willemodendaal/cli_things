@@ -1,6 +1,6 @@
 About "Layers".
 
-This folder structure, nested layers, is an architectural experiment. I want to see if it helps to not "define" what a layer is for (eg. "data-access"), but to keep it more flexible, so that natural layers can evolve.
+This folder structure, nested layers, is an architectural experiment. I want to see if it helps to not "define" what a layer is for (eg. "data-access"), but to keep it more flexible, so that natural layers can evolve. - See more in `./wacky_ideas.md`
 
 Normal 'layer' rules apply:
 - Layers can call downward, to lower layers, but never upward.
