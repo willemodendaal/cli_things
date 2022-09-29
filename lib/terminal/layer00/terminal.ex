@@ -19,6 +19,7 @@ defmodule CliThings.Terminal.Layer00.Terminal do
       {:event, %Event{} = event} ->
         # todo: smelly... this callback mechanism ...
         case event_handler.(event) do
+          {:break, result} -> {:ok, result}
           :break -> :ok
           :handled -> loop(event_handler)
         end

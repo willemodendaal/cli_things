@@ -1,7 +1,7 @@
-defmodule CliThings.Terminal.Layer00.Output do
+defmodule CliThings.Terminal.Layer01.Output do
   alias ExTermbox.Bindings, as: Termbox
 
-  import CliThings.Terminal.Layer00.PutCharacter
+  import CliThings.Terminal.Layer01.PutCharacter
 
   @spec output(list(list())) :: list
   def output(lines) when is_list(lines) do

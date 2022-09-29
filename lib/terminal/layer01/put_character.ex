@@ -1,10 +1,8 @@
-defmodule CliThings.Terminal.Layer00.PutCharacter do
+defmodule CliThings.Terminal.Layer01.PutCharacter do
   alias ExTermbox.Bindings, as: Termbox
   alias ExTermbox.{Cell, Position}
 
   def put_character(ch, y, x) do
-    Process.sleep(5 + :rand.uniform(10))
-
     # term_256 color lookup over here: https://www.ditig.com/256-colors-cheat-sheet
 
     # Subtle green:

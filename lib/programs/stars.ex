@@ -1,8 +1,8 @@
 defmodule CliThings.Programs.Stars do
-  import CliThings.Terminal.Layer00.Output
-  import CliThings.Terminal.Layer01.Blip
-
   alias CliThings.Terminal.Layer00.Terminal
+
+  import CliThings.Terminal.Layer01.Output
+  import CliThings.Terminal.Layer01.Blip
 
   alias CliThings.Programs.Stars.StarRenderer
 

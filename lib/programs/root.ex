@@ -1,8 +1,8 @@
 defmodule CliThings.Programs.Root do
-  import CliThings.Terminal.Layer00.Output
-  import CliThings.Terminal.Layer01.Blip
-
   alias CliThings.Terminal.Layer00.Terminal
+
+  import CliThings.Terminal.Layer01.Output
+  import CliThings.Terminal.Layer01.Blip
 
   alias ExTermbox.{Event}
 
@@ -27,6 +27,12 @@ defmodule CliThings.Programs.Root do
     case event do
       %Event{ch: ?q} ->
         :break
+
+      %Event{ch: ?c} ->
+        CliThings.Programs.Capture.loop()
+        Terminal.clear()
+        output_prompt_and_options(['Welcome back.'])
+        :handled
 
       %Event{ch: ?s} ->
         CliThings.Programs.Stars.loop()
